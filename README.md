@@ -1,2 +1,2 @@
 # SnapTalk
-AI-Powered OCR Web Application with Text-to-Speech - Built with Spring Boot, Tesseract, and JavaScript
+This is an Dynamic web Application which is AI powered too. Its works is to extract an text from image and read that aloud so that user don't need to read the text.

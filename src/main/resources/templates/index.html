@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SnapTalk - AI-Powered OCR</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">
+            <i class="fas fa-camera"></i>
+            <h1>SnapTalk</h1>
+        </div>
+        <p class="subtitle">AI-Powered OCR with Text-to-Speech</p>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Input Section -->
+        <section class="input-section">
+            <div class="upload-options">
+                <!-- File Upload Option -->
+                <div class="upload-option">
+                    <div class="upload-area" id="uploadArea">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <h3>Upload Image</h3>
+                        <p>Click to select or drag and drop</p>
+                        <input type="file" id="fileInput" accept="image/*" hidden>
+                    </div>
+                </div>
+
+                <!-- Camera Option -->
+                <div class="upload-option">
+                    <div class="camera-area" id="cameraArea">
+                        <i class="fas fa-camera"></i>
+                        <h3>Use Camera</h3>
+                        <p>Take a photo directly</p>
+                        <button id="cameraBtn" class="btn btn-camera">
+                            <i class="fas fa-camera"></i> Open Camera
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Camera Preview (Hidden by default) -->
+            <div class="camera-preview" id="cameraPreview" style="display: none;">
+                <video id="video" autoplay playsinline></video>
+                <canvas id="canvas" style="display: none;"></canvas>
+                <div class="camera-controls">
+                    <button id="captureBtn" class="btn btn-primary">
+                        <i class="fas fa-camera"></i> Capture
+                    </button>
+                    <button id="closeCameraBtn" class="btn btn-secondary">
+                        <i class="fas fa-times"></i> Close
+                    </button>
+                </div>
+            </div>
+
+            <!-- Process Button -->
+            <button id="processBtn" class="btn btn-primary" disabled>
+                <i class="fas fa-cog"></i> Extract Text
+            </button>
+        </section>
+
+        <!-- Loading Animation -->
+        <div class="loading" id="loading" style="display: none;">
+            <div class="spinner"></div>
+            <p>Processing your image...</p>
+        </div>
+
+        <!-- Results Section -->
+        <section class="results-section" id="resultsSection" style="display: none;">
+            <div class="results-header">
+                <h2><i class="fas fa-file-text"></i> Extracted Text</h2>
+                <div class="results-actions">
+                    <button id="readAloudBtn" class="btn btn-success">
+                        <i class="fas fa-volume-up"></i> Read Aloud
+                    </button>
+                    <button id="copyBtn" class="btn btn-info">
+                        <i class="fas fa-copy"></i> Copy Text
+                    </button>
+                    <button id="clearBtn" class="btn btn-warning">
+                        <i class="fas fa-trash"></i> Clear
+                    </button>
+                </div>
+            </div>
+            <div class="text-output">
+                <textarea id="extractedText" placeholder="Extracted text will appear here..." readonly></textarea>
+            </div>
+            <div class="stats">
+                <span id="charCount">0 characters</span>
+                <span id="wordCount">0 words</span>
+                <span id="processingTime"></span>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2025 SnapTalk - AI-Powered OCR Application</p>
+        <p>Built with Spring Boot, Tesseract OCR & Web Speech API</p>
+    </footer>
+
+    <!-- Toast Notifications -->
+    <div id="toast" class="toast"></div>
+</div>
+
+<script th:src="@{/js/script.js}"></script>
+</body>
+</html>
